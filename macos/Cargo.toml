@@ -1,0 +1,9 @@
+[package]
+name = "mac_ime_tutorial"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+core-foundation = "0.10.1"
+core-foundation-sys = "0.8.7"
+once_cell = "1"
