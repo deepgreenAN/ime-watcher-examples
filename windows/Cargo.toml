@@ -1,0 +1,25 @@
+[package]
+name = "win-ime-tutorial-v2"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+windows = { version = "0.62.2", features = [
+    "Win32_Foundation",
+    "Win32_System_LibraryLoader",
+    "Win32_Graphics_Gdi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_Ime",
+    "Win32_UI_Accessibility",
+    "Win32_UI_Input",
+    "Win32_Devices_HumanInterfaceDevice",
+    "Win32_UI_Input_KeyboardAndMouse",
+    # 以下はwin
+    "Win32_System_Com",
+    "Win32_UI_TextServices",
+    "Win32_System_SystemServices",
+    "Win32_Globalization",
+] }
+windows-core = "0.62.2"
+
+once_cell = "1"
