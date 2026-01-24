@@ -15,9 +15,10 @@ use core_foundation_sys::notification_center::{
 };
 use once_cell::sync::OnceCell;
 
-static GET_IME_MESSAGE_SENDER: OnceCell<SyncSender<GetImeMessage>> = OnceCell::new();
+static GET_IME_MESSAGE_SENDER: OnceCell<SyncSender<GetKeyboardInputSourceNotification>> =
+    OnceCell::new();
 
-struct GetImeMessage;
+struct GetKeyboardInputSourceNotification;
 
 type TISInputSourceRef = *const c_void;
 
@@ -48,7 +49,7 @@ extern "C" fn callback(
     _user_info: CFDictionaryRef,
 ) {
     if let Some(message_sender) = GET_IME_MESSAGE_SENDER.get() {
-        let _ = message_sender.try_send(GetImeMessage);
+        let _ = message_sender.try_send(GetKeyboardInputSourceNotification);
     }
 }
 
