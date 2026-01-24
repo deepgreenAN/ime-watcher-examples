@@ -22,11 +22,10 @@ fn main() -> Result<(), dbus::Error> {
         let mut fcitx5_sni_proxy = None;
 
         for sni_name in notifier_items.into_iter() {
-            let dest_and_path = sni_name.split("@").collect::<Vec<&str>>();
-            let (dest, path) = (
-                dest_and_path.first().unwrap().to_string(),
-                dest_and_path.get(1).unwrap().to_string(),
-            );
+            let (dest, path) = {
+                let (dest, path) = sni_name.split_once("@").unwrap();
+                (dest.to_owned(), path.to_owned())
+            };
 
             let sni_proxy = conn.with_proxy(dest, path, Duration::from_millis(500));
             let sni_id: String = sni_proxy.get("org.kde.StatusNotifierItem", "Id")?;
