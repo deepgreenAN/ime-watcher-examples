@@ -42,7 +42,7 @@ fn main() -> Result<(), dbus::Error> {
         return Ok(()); // 実際にはエラーとする
     };
 
-    let signal_ml = MatchRule::new_signal("org.kde.StatusNotifierItem", "NewIcon");
+    let signal_mr = MatchRule::new_signal("org.kde.StatusNotifierItem", "NewIcon");
 
     // タイミングの通知用
     struct GetInputMethod;
@@ -50,7 +50,7 @@ fn main() -> Result<(), dbus::Error> {
     let (sender, receiver) = sync_channel(1);
 
     let _token = fcitx5_sni_proxy.match_start(
-        signal_ml,
+        signal_mr,
         true,
         Box::new(move |_message, _| {
             let _ = sender.try_send(GetInputMethod);

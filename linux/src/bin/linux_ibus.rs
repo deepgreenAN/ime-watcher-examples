@@ -41,10 +41,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // println!("ime_status: {ime_status}");
 
-    let signal_ml = MatchRule::new_signal("org.freedesktop.IBus", "GlobalEngineChanged");
+    let signal_mr = MatchRule::new_signal("org.freedesktop.IBus", "GlobalEngineChanged");
 
     let _token = proxy.match_start(
-        signal_ml,
+        signal_mr,
         true,
         Box::new(|message, _| {
             let engine_name: String = message.read1().unwrap();
